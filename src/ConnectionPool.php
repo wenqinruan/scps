@@ -29,7 +29,6 @@ class ConnectionPool
         $this->serv->on('Task', array($this, 'onTask')); //开始任务
         $this->serv->on('Finish', array($this, 'onFinish')); //任务完成
         $this->serv->start();
-        $this->serv->start();
     }
 
     public function onStart($serv)
