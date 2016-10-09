@@ -1,11 +1,11 @@
 {
-    "name": "wenqin/sdcp",
-    "description": "swoole doctrine dbal connection pool",
+    "name": "wenqin/scps",
+    "description": "swoole connection pool server",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Codeages\\CP\\": "src/",
-            "Codeages\\CP\\Test\\": "tests"
+            "Codeages\\SCPS\\": "src/",
+            "Codeages\\SCPS\\Test\\": "tests"
         }
     },
     "require": {

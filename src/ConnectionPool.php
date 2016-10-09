@@ -1,6 +1,6 @@
 <?php
 
-namespace Codeages\CP;
+namespace Codeages\SCPS;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
