@@ -52,7 +52,7 @@ class ConnectionPool
 
     public function onReceive(\swoole_server $serv, $fd, $from_id, $data)
     {
-        $this->logger->info("Receive message from {$fd}.");
+        $this->logger->info("Receive message from {$from_id}, fd {$fd}", array($data));
 
         $result = $serv->taskwait($data);
         $serv->send($fd, json_encode($result));
@@ -65,6 +65,7 @@ class ConnectionPool
     public function onTask($serv, $task_id, $from_id, $data)
     {
         $this->logger->info("Execute task {$task_id}");
+
         static $link = null;
         if ($link == null) {
             $config = new \Doctrine\DBAL\Configuration();
@@ -76,11 +77,12 @@ class ConnectionPool
             }
         }
 
-        $encodeData = json_decode($data, true);
+        $encodeData = json_decode(rtrim($data, $this->config['swoole_config']['package_eof']), true);
         $method = $encodeData['method'];
         $args = $encodeData['args'];
-        $result = call_user_func_array(array($link, $method), $args);
-        if (!$result) {
+        echo 'run:'.$method."\n";
+        $result = DBALCaller::call($link, $method, $args);
+        if (!$result && $result != 0) {
             return array('data' => '', 'error' => 'query error');
         }
 
