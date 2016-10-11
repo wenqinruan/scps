@@ -52,7 +52,12 @@ class ConnectionPool
 
     public function onReceive(\swoole_server $serv, $fd, $from_id, $data)
     {
-        $this->logger->info("Receive message from {$from_id}, fd {$fd}", array($data));
+        if ($this->config['env'] == 'dev') {
+            $this->logger->info("Receive message from {$from_id}, fd {$fd}", array($data));
+        } else {
+            $this->logger->info("Receive message from {$from_id}, fd {$fd}");
+        }
+        
 
         $result = $serv->taskwait($data);
         $serv->send($fd, json_encode($result));

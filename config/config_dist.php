@@ -3,6 +3,7 @@
 return array(
     'host' => '127.0.0.1',
     'port' => '9501',
+    'env' => 'dev', //prod || dev
     'swoole_config' => array(
         'open_eof_check' => true, //打开EOF检测
         'package_eof' => '\r\n\r\n',
