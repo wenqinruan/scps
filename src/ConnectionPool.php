@@ -80,7 +80,7 @@ class ConnectionPool
         $encodeData = json_decode(rtrim($data, $this->config['swoole_config']['package_eof']), true);
         $method = $encodeData['method'];
         $args = $encodeData['args'];
-        echo 'run:'.$method."\n";
+
         $result = DBALCaller::call($link, $method, $args);
         if (!$result && $result != 0) {
             return array('data' => '', 'error' => 'query error');
