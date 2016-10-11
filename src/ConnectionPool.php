@@ -82,9 +82,6 @@ class ConnectionPool
         $args = $encodeData['args'];
 
         $result = DBALCaller::call($link, $method, $args);
-        if (!$result && $result != 0) {
-            return array('data' => '', 'error' => 'query error');
-        }
 
         return array('data' => $result);
     }
