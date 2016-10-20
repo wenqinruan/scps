@@ -16,7 +16,7 @@ return array(
         'task_worker_num' => 8,
     ),
     'db' => array(
-        'dbname' => 'edusoho',
+        'dbname' => 'your_db',
         'user' => 'root',
         'password' => '',
         'host' => 'localhost',
