@@ -59,7 +59,7 @@ class ConnectionPool
         }
         
 
-        $result = $serv->taskwait($data);
+        $result = $serv->taskwait($data, 10, $fd%$this->config['swoole_config']['task_worker_num']);
         $serv->send($fd, json_encode($result));
     }
     public function onClose($serv, $fd, $from_id)
